@@ -33,18 +33,24 @@ public class World {
 		return nextPossible;
 	}
 	
-	
-	
-	// ALGORITHM STUFF
-	public static void tickAlgorithm(){
-		selectedAlgorithm.tick();
-	}
-	
 	public static Node getNodeFromID(int ID){
 		for(int i = 0; i < nodes.size(); i++){
 			if(nodes.get(i).ID == ID) return nodes.get(i);
 		}
 		return null;
+	}
+	
+	public static int getNodeIndexFromID(int ID){
+		for(int i = 0; i < nodes.size(); i++){
+			if(nodes.get(i).ID==ID)return i;
+		}
+		return 0;
+	}
+	
+	
+	// ALGORITHM STUFF
+	public static void tickAlgorithm(){
+		selectedAlgorithm.tick();
 	}
 	
 }

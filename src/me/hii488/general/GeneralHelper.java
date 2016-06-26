@@ -96,11 +96,11 @@ public class GeneralHelper {
 		double shortestFound = Integer.MAX_VALUE;
 		int nodeValue = -1;
 		
-		for(int j = 0; j < World.nodeDistances[i].length; j++){
+		for(int j = 0; j < World.nodeDistances[World.getNodeIndexFromID(i)].length; j++){
 			if(i!=j){
-				if(World.nodeDistances[i][j] < shortestFound && !World.nodes.get(j).visited){
-					shortestFound = World.nodeDistances[i][j];
-					nodeValue = j;
+				if(World.nodeDistances[World.getNodeIndexFromID(i)][j] < shortestFound && !World.nodes.get(j).visited){
+					shortestFound = World.nodeDistances[World.getNodeIndexFromID(i)][j];
+					nodeValue = World.nodes.get(j).ID;
 				}
 			}
 		}

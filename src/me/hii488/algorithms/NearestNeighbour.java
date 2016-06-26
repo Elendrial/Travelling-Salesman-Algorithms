@@ -35,7 +35,7 @@ public class NearestNeighbour extends GeneralAlgorithm{
 			currentPath[currentNodesVisited] = GeneralHelper.closestNode(currentPath[currentNodesVisited-1]);
 		}
 		
-		World.nodes.get(currentPath[currentNodesVisited]).visited = true;
+		World.getNodeFromID(currentPath[currentNodesVisited]).visited = true;
 		currentNodesVisited++;
 		
 		if(currentNodesVisited >= World.nodes.size()){
@@ -46,13 +46,15 @@ public class NearestNeighbour extends GeneralAlgorithm{
 			}
 			
 			currentNodesVisited = 0;
-			startingPoint++;
 			
 			for(int i = 0; i < currentPath.length; i++){
 				currentPath[i] = 0;
 			}
 			
-			if(startingPoint >= World.nodes.size()){
+			if(World.getNodeIndexFromID(startingPoint)+1 < World.nodes.size()){
+				startingPoint = World.nodes.get(World.getNodeIndexFromID(startingPoint)+1).ID;
+			}
+			else{
 				World.algorithmFinished = true;
 			}
 			for(int i = 0; i < World.nodes.size();i++){
