@@ -70,16 +70,23 @@ public class GeneralHelper {
 	public static double pathLenth(int[] nodeOrder){
 		double totalDist = 0;
 		for(int i = 0; i < nodeOrder.length-1; i++){
-			totalDist += distBetweenNodes(nodeOrder[i], nodeOrder[i+1]);
+			totalDist += distBetweenNodesID(nodeOrder[i], nodeOrder[i+1]);
 		}
-		totalDist += distBetweenNodes(nodeOrder[0], nodeOrder[nodeOrder.length-1]);
+		totalDist += distBetweenNodesID(nodeOrder[0], nodeOrder[nodeOrder.length-1]);
 		
 		return totalDist;
 	}
 	
-	public static double distBetweenNodes(int nodeA, int nodeB){
+	public static double distBetweenNodesID(int nodeA, int nodeB){
 		Position a = World.getNodeFromID(nodeA).position;
 		Position b = World.getNodeFromID(nodeB).position;
+		
+		return  Math.sqrt(Math.abs(Math.pow(a.getAbsX() - b.getAbsX(), 2) + Math.pow(a.getAbsY() - b.getAbsY(), 2)));
+	}
+	
+	public static double distBetweenNodes(int nodeA, int nodeB){
+		Position a = World.nodes.get(nodeA).position;
+		Position b = World.nodes.get(nodeB).position;
 		
 		return  Math.sqrt(Math.abs(Math.pow(a.getAbsX() - b.getAbsX(), 2) + Math.pow(a.getAbsY() - b.getAbsY(), 2)));
 	}

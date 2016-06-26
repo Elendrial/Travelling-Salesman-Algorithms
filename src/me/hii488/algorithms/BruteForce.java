@@ -6,7 +6,6 @@ import java.util.Arrays;
 
 import me.hii488.World;
 import me.hii488.general.GeneralHelper;
-import me.hii488.window.Window;
 
 public class BruteForce extends GeneralAlgorithm{
 
@@ -57,7 +56,6 @@ public class BruteForce extends GeneralAlgorithm{
 		g.drawString("Shortest Path Length: " + shortestPathLength, 5, 15);
 		g.drawString("Shortest Path: " + Arrays.toString(shortestPathPath), 5, 35);
 		g.drawString("Current Path : " + Arrays.toString(currentPath), 5, 55);
-		g.drawString("Per sec: " + Window.currentFPS, 5, 75);
 	}
 	
 }

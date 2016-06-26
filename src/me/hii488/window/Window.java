@@ -25,6 +25,8 @@ public class Window implements Runnable{
 
     public boolean isRunning;
     
+    public WindowListeners wListeners = new WindowListeners();
+    
     
     public Window(String title, int width, int height){
         // Set the variables
@@ -43,12 +45,11 @@ public class Window implements Runnable{
         this.frame.pack();
         this.frame.setLocationRelativeTo(null);
         this.frame.setVisible(true);
-
-  //      this.frame.addMouseListener(new MouseListenerStuff());
         
         // Create the display
         this.display = new Display(this);
-        this.display.addMouseListener(new MouseListenerStuff());
+        this.display.addMouseListener(wListeners);
+        this.display.addKeyListener(wListeners);
         this.frame.add(this.display);
     }
 
@@ -62,7 +63,7 @@ public class Window implements Runnable{
     }
 
     private void tick(){
-    	if(World.selectedAlgorithm!=null && !World.algorithmFinished)World.tickAlgorithm();
+    	if(World.selectedAlgorithm != null && !World.algorithmFinished && !World.paused)World.tickAlgorithm();
     }
 
 	private void render(){
@@ -86,35 +87,18 @@ public class Window implements Runnable{
         bs.show();
     }
 
-    
-    // Tick is deliberately throttled, it should only happen every 'x' ms, as it applies game logic
-    // FPS should happen as fast as it can, since it renders (only important if the field of vision can change)
-    
-	public static int currentFPS = 0;
+	public int currentTPS = 0;
 	
-	public static long delay = 1;
+	public long delay = 1;
 	
     @Override
     public void run() {
-        int fps = 0, tick = 0;
+        int tps = 0;
         
-        double fpsTimer = System.currentTimeMillis();
-        double secondsPerTick = 1D / targetTPS;
-        double nsPerTick = secondsPerTick * 1000000000D;
-        double then = System.nanoTime();
-        double now;
-        double unprocessed = 0;
+        double printTimer = System.currentTimeMillis();
         
         while(isRunning){
-  /*          now = System.nanoTime();
-            unprocessed += (now - then) / nsPerTick;
-            then = now;
-            while(unprocessed >= 1){
-                tick();
-                tick++;
-                unprocessed--;
-            }
-*/
+
             // This is NOT to sleep, but to limit the game loop
             try {
                 Thread.sleep(delay);
@@ -124,14 +108,14 @@ public class Window implements Runnable{
 
             render();
             tick();
-            fps++;
+            tps++;
 
             // If the current time is 1 second greater than the last time we printed
-            if(System.currentTimeMillis() - fpsTimer >= 1000){
-                System.out.printf("FPS: %d%n"/*, TPS: %d%n"*/, fps /*,tick*/);
-                currentFPS = fps;
-                fps = 0; tick = 0;
-                fpsTimer += 1000;
+            if(System.currentTimeMillis() - printTimer >= 1000){
+                System.out.printf("TPS: %d%n", tps);
+                currentTPS = tps;
+                tps = 0;
+                printTimer += 1000;
             }
         }
 

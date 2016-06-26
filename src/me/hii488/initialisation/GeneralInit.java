@@ -13,22 +13,6 @@ public class GeneralInit {
 	public static int currentNodes = 0;
 	public static int currentAlgorithm = 0;
 	
-	public static void changeNodes(int limit){
-		World.nodes.clear();
-		nodeInit(limit);
-		
-		World.algorithms.clear();
-		algorithmInit(currentAlgorithm);
-	}
-	
-	public static void changeAlgorithm(int selected){
-		World.nodes.clear();
-		nodeInit(currentNodes);
-		
-		World.algorithms.clear();
-		algorithmInit(selected);
-	}
-	
 	public static void init(){
 		nodeInit(-1);
 		algorithmInit(0);
@@ -59,7 +43,7 @@ public class GeneralInit {
 		World.nodes.add(new Node(new Position(543,752)));
 		
 		if(limit > 3){
-			for(int i = World.nodes.size()-1; i > limit; i--){
+			for(int i = World.nodes.size()-1; i >= limit; i--){
 				World.nodes.remove(i);
 			}
 		}
@@ -75,6 +59,32 @@ public class GeneralInit {
 		World.algorithms.add(new BruteForce());
 		World.algorithms.add(new NearestNeighbour());
 		World.selectedAlgorithm = World.algorithms.get(selected);
+	}
+	
+	
+	
+	public static void addSpecificNode(Position p){
+		World.nodes.add(new Node(p));
+		GeneralHelper.doNodeDistance();
+	}
+	
+	public static void removeSpecificNode(int ID){
+		int index = -1;
+		for(int i = 0; i < World.nodes.size(); i++){
+			if(World.nodes.get(i).ID == ID) index = i;
+		}
+		World.nodes.remove(index);
+		GeneralHelper.doNodeDistance();
+	}
+	
+	public static void changeNodes(int limit){
+		World.nodes.clear();
+		nodeInit(limit);
+	}
+	
+	public static void changeAlgorithm(int selected){
+		World.algorithms.clear();
+		algorithmInit(selected);
 	}
 	
 }

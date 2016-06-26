@@ -1,10 +1,14 @@
 package me.hii488;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import me.hii488.algorithms.GeneralAlgorithm;
+import me.hii488.window.Window;
 
 public class World {
+	
+	public static Window window;
 	
 	public static ArrayList<Node> nodes = new ArrayList<Node>();
 	
@@ -14,6 +18,9 @@ public class World {
 	public static GeneralAlgorithm selectedAlgorithm;
 	
 	public static boolean algorithmFinished = true;
+	public static boolean paused = false;
+	
+	public static Random rand = new Random();
 	
 	// NODE STUFF
 	public static int getUnusedID(){

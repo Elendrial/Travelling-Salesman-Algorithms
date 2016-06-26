@@ -7,7 +7,6 @@ import java.util.Arrays;
 import me.hii488.World;
 import me.hii488.general.GeneralHelper;
 import me.hii488.general.Position;
-import me.hii488.window.Window;
 
 public class NearestNeighbour extends GeneralAlgorithm{
 
@@ -48,6 +47,11 @@ public class NearestNeighbour extends GeneralAlgorithm{
 			
 			currentNodesVisited = 0;
 			startingPoint++;
+			
+			for(int i = 0; i < currentPath.length; i++){
+				currentPath[i] = 0;
+			}
+			
 			if(startingPoint >= World.nodes.size()){
 				World.algorithmFinished = true;
 			}
@@ -72,7 +76,6 @@ public class NearestNeighbour extends GeneralAlgorithm{
 		g.drawString("Shortest Path Length: " + shortestPathLength, 5, 15);
 		g.drawString("Shortest Path: " + Arrays.toString(shortestPathPath), 5, 35);
 		g.drawString("Current Path : " + Arrays.toString(currentPath), 5, 55);
-		g.drawString("Ticks Per sec: " + Window.currentFPS, 5, 75);
 	}
 
 }
