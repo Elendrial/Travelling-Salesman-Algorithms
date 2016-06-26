@@ -5,6 +5,8 @@ import me.hii488.general.GeneralHelper;
 
 public class Christofides extends GeneralAlgorithm{
 
+	// NOT FINISHED YET AND I'M PROBABLY TOO LAZY TO DO IT.
+	
 	public Connection[] connection;
 	public int position = 0;
 	

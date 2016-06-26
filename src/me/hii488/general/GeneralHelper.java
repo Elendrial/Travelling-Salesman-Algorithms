@@ -9,6 +9,7 @@ import me.hii488.World;
 public class GeneralHelper {
 	
 	// LIST ORDERS
+	// I'm kinda proud of this I'm not going to lie :3
 	public static int[] incrementListThing(int[] currentOrder){
 		int[] out = currentOrder;
 		
@@ -134,7 +135,6 @@ public class GeneralHelper {
 	}
 	
 	public static void drawLineBetweenNodes(Graphics g, int nodeA, int nodeB, Color c){
-	//	System.out.println("NodeA:" + nodeA);
 		Position a = World.getNodeFromID(nodeA).position;
 		Position b = World.getNodeFromID(nodeB).position;
 		Color before = g.getColor();
@@ -148,7 +148,6 @@ public class GeneralHelper {
 	}
 	
 	public static void drawLineBetweenNodesOffset(Graphics g, int nodeA, int nodeB, Color c, Position offset){
-	//	System.out.println("NodeA:" + nodeA);
 		Position a = World.getNodeFromID(nodeA).position;
 		Position b = World.getNodeFromID(nodeB).position;
 		Color before = g.getColor();

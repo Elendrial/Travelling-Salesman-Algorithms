@@ -106,9 +106,9 @@ public class Window implements Runnable{
                 e.printStackTrace();
             }
 
-            render();
-            tick();
-            tps++;
+            // In try/catches so that if one fails the program doesn't stop.
+            try{render();}catch(Exception e){e.printStackTrace();}
+            try{tick();}catch(Exception e){e.printStackTrace();tps++;}
 
             // If the current time is 1 second greater than the last time we printed
             if(System.currentTimeMillis() - printTimer >= 1000){

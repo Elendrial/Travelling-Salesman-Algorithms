@@ -20,6 +20,7 @@ public class Display extends Canvas{
 		}
 		g.drawString("Ticks per Second: " + World.window.currentTPS, World.window.width - 106 - (7*("" + World.window.currentTPS).length()), World.window.height-10);
 		g.drawString("Delay between ticks (ms): " + World.window.delay, World.window.width - 149 - (7*("" + World.window.delay).length()), World.window.height-25);
+		g.drawString("Algorithm: " + World.selectedAlgorithm.displayName, 5, World.window.height-10);
 	}
 	
 }

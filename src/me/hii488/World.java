@@ -25,11 +25,17 @@ public class World {
 	// NODE STUFF
 	public static int getUnusedID(){
 		int nextPossible = 0;
+		boolean zeroIncluded = false;
+		
 		for(int i = 0; i < nodes.size(); i++){
 			if(nodes.get(i).ID >= nextPossible){
 				nextPossible = nodes.get(i).ID + 1;
 			}
+			if(nodes.get(i).ID == 0){
+				zeroIncluded = true;
+			}
 		}
+		if(!zeroIncluded) return 0; // 0 is where all algorithms start from, if there ain't a 0, shit's gonna go wrong
 		return nextPossible;
 	}
 	

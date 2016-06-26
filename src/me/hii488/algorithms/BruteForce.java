@@ -30,7 +30,7 @@ public class BruteForce extends GeneralAlgorithm{
 	public void tick(){
 		currentPath = GeneralHelper.incrementListThing(currentPath);
 		double pathLength = GeneralHelper.pathLenth(currentPath);
-		//System.out.println("Tick");
+
 		if(pathLength < shortestPathLength){
 			shortestPathLength = pathLength;
 			shortestPathPath = currentPath.clone();

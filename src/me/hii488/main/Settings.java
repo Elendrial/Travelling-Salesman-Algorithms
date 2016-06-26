@@ -2,10 +2,7 @@ package me.hii488.main;
 
 public class Settings {
 	
-	public static class WorldSettings{
-		public static boolean elastic = false;
-		public static boolean gravity = true;
-		
+	public static class WorldSettings{		
 		public static int TargetTPS = 30;
 		public static float currentSpeed = 1;
 	}

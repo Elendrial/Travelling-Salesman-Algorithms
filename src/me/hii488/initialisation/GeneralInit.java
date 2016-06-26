@@ -21,6 +21,7 @@ public class GeneralInit {
 	public static void nodeInit(int limit){
 		currentNodes = limit;
 		
+		// These were originally for testing, left it in because lazy and made it a feature - go me!
 		World.nodes.add(new Node(new Position(100,100)));
 		World.nodes.add(new Node(new Position(455,263)));
 		World.nodes.add(new Node(new Position(174,532)));
@@ -49,13 +50,12 @@ public class GeneralInit {
 		}
 		
 		GeneralHelper.doNodeDistance();
-	//	for(int i = 0; i < World.nodeDistances.length;i++)	System.out.println(Arrays.toString(World.nodeDistances[i]));
 	}
 	
 	public static void algorithmInit(int selected){
 		currentAlgorithm = selected;
 		
-		World.algorithms.add(new GeneralAlgorithm("test"));
+		World.algorithms.add(new GeneralAlgorithm("None"));
 		World.algorithms.add(new BruteForce());
 		World.algorithms.add(new NearestNeighbour());
 		World.selectedAlgorithm = World.algorithms.get(selected);
