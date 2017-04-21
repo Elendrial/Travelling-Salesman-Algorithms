@@ -86,7 +86,7 @@ public class WindowListeners implements MouseListener, KeyListener{
 			}
 			if(alg == 1){
 				int algorithm = Integer.parseInt(JOptionPane.showInputDialog(null, "Which algorithm would you like to use?"));
-				GeneralInit.changeAlgorithm(algorithm);;
+				GeneralInit.changeAlgorithm(algorithm);
 			}
 		}
 		
