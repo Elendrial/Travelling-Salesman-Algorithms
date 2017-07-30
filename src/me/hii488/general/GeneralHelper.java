@@ -2,8 +2,10 @@ package me.hii488.general;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.ArrayList;
 import java.util.Arrays;
 
+import me.hii488.Node;
 import me.hii488.World;
 
 public class GeneralHelper {
@@ -91,6 +93,12 @@ public class GeneralHelper {
 		
 		return  Math.sqrt(Math.abs(Math.pow(a.getAbsX() - b.getAbsX(), 2) + Math.pow(a.getAbsY() - b.getAbsY(), 2)));
 	}
+	public static double distBetweenNodes(Node nodeA, Node nodeB){
+		Position a = nodeA.position;
+		Position b = nodeB.position;
+		
+		return  Math.sqrt(Math.abs(Math.pow(a.getAbsX() - b.getAbsX(), 2) + Math.pow(a.getAbsY() - b.getAbsY(), 2)));
+	}
 	
 	public static int closestNode(int i) {
 		
@@ -119,13 +127,44 @@ public class GeneralHelper {
 		}
 	}
 	
-	public static Connection[] nearestToEachNodeInConnection(Connection[] connection) {
+	// TODO: Improve this algorithm.
+	/* This returns a list of connections between each node in the list of connections and it's nearest node not in the connections.*/
+	public static Connection[] nearestToEachNodeInConnection(ArrayList<Connection> connections) {
+		ArrayList<Node> nodes = new ArrayList<Node>();
+		Connection[] nearestNeighbours;
+		Connection shortest;
 		
-		return null;
+		for(Connection c : connections){
+			if(!nodes.contains(c.nodeA)) nodes.add(c.nodeA);
+			if(!nodes.contains(c.nodeB)) nodes.add(c.nodeB);
+		}
+		
+		nearestNeighbours = new Connection[nodes.size()];
+		Node n;
+		for(int i = 0; i < nodes.size(); i++){
+			
+			n = nodes.get(i);
+			shortest = new Connection();
+			
+			for(Node n2 : World.nodes) // If this is really slow, change this to only calc the dist once.
+				if(!nodes.contains(n2))
+					if(GeneralHelper.distBetweenNodes(n, n2) < shortest.getLength())
+						shortest.setNodes(n, n2);
+			
+			nearestNeighbours[i] = shortest;
+		}
+		
+		return nearestNeighbours;
 	}
 	
 	public static Connection getClosest(Connection[] c){
-		return null;
+		Connection shortest = new Connection();
+		
+		for(Connection c2: c)
+			if(c2.getLength() < shortest.getLength())
+				shortest = c2;
+		
+		return shortest;
 	}
 	
 	
