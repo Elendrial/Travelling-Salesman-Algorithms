@@ -55,7 +55,7 @@ public class WindowListeners implements MouseListener, KeyListener{
 						for(int i = 0; i < s.split("-").length; i++){
 							String s2 = s.split("-")[i].replace("(", " ").replace(")", " ").trim();
 							if(s2.contains("rand"))	GeneralInit.addSpecificNode(new Position(World.rand.nextInt(World.window.width), World.rand.nextInt(World.window.height)));
-							else GeneralInit.addSpecificNode(new Position(Float.parseFloat(s.trim().split(",")[0]),World.window.height - Float.parseFloat(s.trim().split(",")[1])));
+							else GeneralInit.addSpecificNode(new Position(Float.parseFloat(s.trim().split(",")[0].replace("(", "")),World.window.height - Float.parseFloat(s.trim().split(",")[1].replace(")", ""))));
 						}
 					}
 				}
