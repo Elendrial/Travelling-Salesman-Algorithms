@@ -93,6 +93,7 @@ public class GeneralHelper {
 		
 		return  Math.sqrt(Math.abs(Math.pow(a.getAbsX() - b.getAbsX(), 2) + Math.pow(a.getAbsY() - b.getAbsY(), 2)));
 	}
+	
 	public static double distBetweenNodes(Node nodeA, Node nodeB){
 		Position a = nodeA.position;
 		Position b = nodeB.position;
@@ -157,7 +158,7 @@ public class GeneralHelper {
 		return nearestNeighbours;
 	}
 	
-	public static Connection getClosest(Connection[] c){
+	public static Connection getClosestInConnectionList(Connection[] c){
 		Connection shortest = new Connection();
 		
 		for(Connection c2: c)
@@ -166,6 +167,20 @@ public class GeneralHelper {
 		
 		return shortest;
 	}
+	
+	public static Node[] getClosestNodes() {
+		int[] closestNodes = new int[2];
+		
+		for(int i = 0; i < World.nodes.size(); i++){
+			for(int j = i+1; j < World.nodes.size(); j++){
+				if(World.nodeDistances[i][j] < World.nodeDistances[closestNodes[0]][closestNodes[1]]) closestNodes = new int[]{i,j};
+			}
+		}
+		
+		return new Node[]{World.nodes.get(closestNodes[0]), World.nodes.get(closestNodes[1])};
+	}
+	
+	
 	
 	
 	// RENDER THINGS

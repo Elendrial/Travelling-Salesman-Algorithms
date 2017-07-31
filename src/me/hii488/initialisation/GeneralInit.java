@@ -3,6 +3,7 @@ package me.hii488.initialisation;
 import me.hii488.Node;
 import me.hii488.World;
 import me.hii488.algorithms.BruteForce;
+import me.hii488.algorithms.Christofides;
 import me.hii488.algorithms.GeneralAlgorithm;
 import me.hii488.algorithms.NearestNeighbour;
 import me.hii488.general.GeneralHelper;
@@ -54,14 +55,14 @@ public class GeneralInit {
 	
 	public static void algorithmInit(int selected){
 		currentAlgorithm = selected;
+		World.algorithmFinished = true;
 		
 		World.algorithms.add(new GeneralAlgorithm("None"));
 		World.algorithms.add(new BruteForce());
 		World.algorithms.add(new NearestNeighbour());
+		World.algorithms.add(new Christofides());
 		World.selectedAlgorithm = World.algorithms.get(selected);
 	}
-	
-	
 	
 	public static void addSpecificNode(Position p){
 		World.nodes.add(new Node(p));
