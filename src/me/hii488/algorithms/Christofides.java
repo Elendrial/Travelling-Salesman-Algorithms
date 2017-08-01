@@ -10,7 +10,7 @@ import me.hii488.general.GeneralHelper;
 
 public class Christofides extends GeneralAlgorithm{
 	
-	public ArrayList<Connection> connections;
+	public ArrayList<Connection> connections, hamiltonConnections;
 	public ArrayList<Node> visitedNodes;
 	public int position = 0;
 	
@@ -19,6 +19,7 @@ public class Christofides extends GeneralAlgorithm{
 	public Christofides() {
 		super("Christofides' Algorithm");
 		connections = new ArrayList<Connection>();
+		hamiltonConnections = new ArrayList<Connection>();
 		visitedNodes = new ArrayList<Node>();
 	}
 	
@@ -26,11 +27,30 @@ public class Christofides extends GeneralAlgorithm{
 	public void tick(){
 		
 		if(phase == 3){ // Turn the Eulerian Path into a Hamilton Cycle
-			if(visitedNodes.contains(connections.get(position).nodeB)){
-				
-			}
+			boolean completed = false;
+			Node nodeA = connections.get(position).nodeA;
 			
-			position++;
+			do{
+				if(visitedNodes.contains(connections.get(position).nodeB)){
+					hamiltonConnections.add(new Connection(nodeA, connections.get(position).nodeB));
+					completed = true;
+				}
+				position++;
+			}while(!completed);
+			
+			if(position >= connections.size()-1){
+				position = 0;
+				connections = hamiltonConnections;
+				
+				completed = true;
+				ArrayList<Node> nodes = new ArrayList<Node>();
+				for(Connection c : connections){
+					if(nodes.contains(c.nodeB)) completed = false;
+					nodes.add(c.nodeB);
+				}
+				
+				if(completed) phase++;
+			}
 		}
 		
 		if(phase == 2){ // Turn the minimum spanning tree into an Eulerian Path.
@@ -74,7 +94,7 @@ public class Christofides extends GeneralAlgorithm{
 			}
 			
 			connections = eulerianConnections;
-			
+			position = 0;
 			phase++;
 		}
 		
@@ -95,6 +115,7 @@ public class Christofides extends GeneralAlgorithm{
 
 	public void render(Graphics g){
 		for(Connection c : connections) c.render(g);
+		for(Connection c : hamiltonConnections) c.render(g);
 	}
 	
 }
