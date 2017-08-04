@@ -13,7 +13,6 @@ public class Christofides extends GeneralAlgorithm{
 	public ArrayList<Connection> connections, hamiltonConnections;
 	public ArrayList<Node> visitedNodes;
 	public int position = 0;
-	
 	public int phase = 0;
 	
 	public Christofides() {
@@ -29,18 +28,21 @@ public class Christofides extends GeneralAlgorithm{
 		if(phase == 3){ // Turn the Eulerian Path into a Hamilton Cycle
 			boolean completed = false;
 			Node nodeA = connections.get(position).nodeA;
+			if(!visitedNodes.contains(nodeA)) visitedNodes.add(nodeA);
 			
 			do{
-				if(visitedNodes.contains(connections.get(position).nodeB)){
+				if(!visitedNodes.contains(connections.get(position).nodeB)){
 					hamiltonConnections.add(new Connection(nodeA, connections.get(position).nodeB));
+					visitedNodes.add(connections.get(position).nodeB);
 					completed = true;
 				}
 				position++;
 			}while(!completed);
 			
-			if(position >= connections.size()-1){
+			if(position >= connections.size()-2){
 				position = 0;
 				connections = hamiltonConnections;
+				hamiltonConnections = new ArrayList<Connection>();
 				
 				completed = true;
 				ArrayList<Node> nodes = new ArrayList<Node>();
