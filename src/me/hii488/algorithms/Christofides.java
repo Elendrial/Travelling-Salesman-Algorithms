@@ -14,6 +14,7 @@ public class Christofides extends GeneralAlgorithm{
 	public ArrayList<Node> visitedNodes;
 	public int position = 0;
 	public int phase = 0;
+	public int nodesInSystem;
 	
 	public Christofides() {
 		super("Christofides' Algorithm");

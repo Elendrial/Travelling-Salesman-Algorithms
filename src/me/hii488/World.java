@@ -8,6 +8,8 @@ import me.hii488.window.Window;
 
 public class World {
 	
+	// TODO: Stop relying on ID, but on index if possible.
+	
 	public static Window window;
 	
 	public static ArrayList<Node> nodes = new ArrayList<Node>();

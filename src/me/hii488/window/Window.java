@@ -63,7 +63,7 @@ public class Window implements Runnable{
     }
 
     private void tick(){
-    	if(World.selectedAlgorithm != null && !World.algorithmFinished && !World.paused)World.tickAlgorithm();
+    	if(World.selectedAlgorithm != null && !World.algorithmFinished && !World.paused) World.tickAlgorithm();
     }
 
 	private void render(){

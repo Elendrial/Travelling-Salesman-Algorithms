@@ -9,6 +9,7 @@ import me.hii488.Node;
 import me.hii488.World;
 
 public class GeneralHelper {
+	// TODO: Tidy up the distance getting and get rename methods to be more helpful.
 	
 	// LIST ORDERS
 	// I'm kinda proud of this I'm not going to lie :3

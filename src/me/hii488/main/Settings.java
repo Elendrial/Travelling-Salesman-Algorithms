@@ -5,6 +5,8 @@ public class Settings {
 	public static class WorldSettings{		
 		public static int TargetTPS = 30;
 		public static float currentSpeed = 1;
+		
+		public static boolean debug = false;
 	}
 	
 	

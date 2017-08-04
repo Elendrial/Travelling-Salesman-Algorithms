@@ -1,5 +1,6 @@
 package me.hii488.general;
 
+// TODO: Remove this and replace with the inbuilt Point class.
 public class Position {
 	private float x = 0;
 	private float y = 0;
